@@ -35,7 +35,7 @@ RUN         apt-get update \
             && apt full-upgrade -y \
             && apt autoremove -y \
             \
-            && wget http://100.100.100.102:8042/krcn.vpn.ca.crt \
+            && wget http://100.100.100.105:8042/krcn.vpn.ca.crt \
             && mv krcn.vpn.ca.crt /etc/ssl/certs/krcn.vpn.ca.crt \
             && update-ca-certificates \
             \
