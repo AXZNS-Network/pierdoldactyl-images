@@ -35,8 +35,8 @@ RUN         apt-get update \
             && apt full-upgrade -y \
             && apt autoremove -y \
             \
-            && wget http://100.100.100.105:8042/krcn.vpn.ca.crt \
-            && mv krcn.vpn.ca.crt /etc/ssl/certs/krcn.vpn.ca.crt \
+            && wget http://10.255.255.10:8042/KRCN.NETWORK_CA.crt \
+            && mv KRCN.NETWORK_CA.crt /etc/ssl/certs/KRCN.NETWORK_CA.crt \
             && update-ca-certificates \
             \
             && keytool -importcert \
@@ -44,7 +44,7 @@ RUN         apt-get update \
                -keystore /usr/lib/jvm/zulu21-ca-amd64/lib/security/cacerts \
                -storepass changeit \
                -alias krcn-vpn \
-               -file /etc/ssl/certs/krcn.vpn.ca.crt \
+               -file /etc/ssl/certs/KRCN.NETWORK_CA.crt \
                -noprompt \
             \
             && rm -rf /var/lib/apt/lists/* \
