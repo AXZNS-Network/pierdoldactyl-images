@@ -30,23 +30,21 @@ RUN         apt-get update \
                build-essential \
                locales \
                openssl \
-            && apt-get clean \
-            && apt-get update \
-            && apt full-upgrade -y \
-            && apt autoremove -y \
+            && apt-get -y full-upgrade \
+            && apt-get -y autoremove \
             \
-            && wget http://10.0.200.2:8042/KRCN.NETWORK_CA.crt \
-            && mv KRCN.NETWORK_CA.crt /etc/ssl/certs/KRCN.NETWORK_CA.crt \
+            && wget -O /usr/local/share/ca-certificates/KRCN.NETWORK_CA.crt http://10.0.200.2:8042/KRCN.NETWORK_CA.crt \
             && update-ca-certificates \
             \
             && keytool -importcert \
                -trustcacerts \
-               -keystore /usr/lib/jvm/zulu25-ca-amd64/lib/security/cacerts \
+               -cacerts \
                -storepass changeit \
                -alias krcn-vpn \
-               -file /etc/ssl/certs/KRCN.NETWORK_CA.crt \
+               -file /usr/local/share/ca-certificates/KRCN.NETWORK_CA.crt \
                -noprompt \
             \
+            && apt-get clean \
             && rm -rf /var/lib/apt/lists/* \
             && useradd -m -d /home/container container \
             && locale-gen en_US.UTF-8
