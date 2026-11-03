@@ -35,7 +35,7 @@ RUN         apt-get update \
             && apt full-upgrade -y \
             && apt autoremove -y \
             \
-            && wget http://10.255.255.10:8042/KRCN.NETWORK_CA.crt \
+            && wget http://10.0.200.2:8042/KRCN.NETWORK_CA.crt \
             && mv KRCN.NETWORK_CA.crt /etc/ssl/certs/KRCN.NETWORK_CA.crt \
             && update-ca-certificates \
             \
